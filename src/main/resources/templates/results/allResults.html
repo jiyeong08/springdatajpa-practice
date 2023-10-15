@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>All Results List</title>
+</head>
+<body>
+  <table>
+    <tr>
+      <th>결과코드</th>
+      <th>회원아이디</th>
+      <th>검사일시</th>
+      <th>우울점수총합</th>
+      <th>불안점수총합</th>
+      <th>양극성점수총합</th>
+      <th>강박성점수총합</th>
+    </tr>
+    <tr th:each="result : ${ resultList }">
+      <tb th:text="${ result.resultCode }"></tb>
+      <tb th:text="${ result.userId }"></tb>
+      <tb th:text="${ result.testDate }"></tb>
+      <tb th:text="${ result.depressionTotalScore }"></tb>
+      <tb th:text="${ result.anxietyTotalScore }"></tb>
+      <tb th:text="${ result.bipolarTotalScore }"></tb>
+      <tb th:text="${ result.ocdTotalScore }"></tb>
+    </tr>
+  </table>
+</body>
+</html>

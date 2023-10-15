@@ -1,0 +1,17 @@
+server:
+  port: 8001
+
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://mysql.coffit.today:3306/bloom
+    username: HIkdt6
+    password: HIkdt6
+
+  jpa:
+    show-sql: true
+    database: mysql
+    generate-ddl: false
+    properties:
+      hibernate:
+        format_sql: true
