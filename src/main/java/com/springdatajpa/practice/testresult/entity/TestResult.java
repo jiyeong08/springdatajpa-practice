@@ -1,19 +1,39 @@
-package com.springdatajpa.practice.testresult.dto;
+package com.springdatajpa.practice.testresult.entity;
 
-public class MemberTestResultDTO {
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
+@Entity
+@Table(name = "member_test_result")
+public class TestResult {
+
+    @Id
+    @Column(name = "result_code")
     private int resultCode;
+
+    @Column(name = "test_date")
     private String testDate;
+
+    @Column(name = "depression_total_score")
     private int depressionTotalScore;
+
+    @Column(name = "anxiety_total_score")
     private int anxietyTotalScore;
+
+    @Column(name = "bipolar_total_score")
     private int bipolarTotalScore;
+
+    @Column(name = "ocd_total_score")
     private int ocdTotalScore;
+
+    @Column(name = "user_id")
     private String userId;
 
-    public MemberTestResultDTO() {
-    }
+    protected TestResult(){}
 
-    public MemberTestResultDTO(int resultCode, String testDate, int depressionTotalScore, int anxietyTotalScore, int bipolarTotalScore, int ocdTotalScore, String userId) {
+    public TestResult(int resultCode, String testDate, int depressionTotalScore, int anxietyTotalScore, int bipolarTotalScore, int ocdTotalScore, String userId) {
         this.resultCode = resultCode;
         this.testDate = testDate;
         this.depressionTotalScore = depressionTotalScore;
@@ -71,17 +91,17 @@ public class MemberTestResultDTO {
         this.ocdTotalScore = ocdTotalScore;
     }
 
-    public String getUserID() {
+    public String getUserId() {
         return userId;
     }
 
-    public void setUserID(String userId) {
+    public void setUserId(String userId) {
         this.userId = userId;
     }
 
     @Override
     public String toString() {
-        return "MemberTestResultDTO{" +
+        return "MemberTestResult{" +
                 "resultCode=" + resultCode +
                 ", testDate='" + testDate + '\'' +
                 ", depressionTotalScore=" + depressionTotalScore +

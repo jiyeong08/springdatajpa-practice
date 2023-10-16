@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>regist result</title>
+</head>
+<body>
+    <h3>테스트 결과 등록</h3>
+
+    <form action="/result/regist" method="post">
+        <label>회원 아이디 : </label>
+        <select name="userId" id="userId"></select><br>
+        <label>검사 날짜 : </label><input type="date" name="testDate"><br>
+        <label>우울 점수 : </label><input type="number" name="depressionTotalScore"><br>
+        <label>불안 점수 : </label><input type="number" name="anxietyTotalScore"><br>
+        <label>양극성 점수 : </label><input type="number" name="bipolarTotalScore"><br>
+        <label>강박성 점수 : </label><input type="number" name="ocdTotalScore"><br>
+        <label>선호 상담사 성별 : </label>
+        <select name="therapistGenderCK">
+            <option value='M'>남성</option>
+            <option value='F'>여성</option>
+        </select><br>
+        <label>검사 상태(신규등록 시 Y 입력) : </label><input type="text" name="testStatus"><br>
+        <input type="submit" value="결과 등록">
+    </form>
+
+    <script>
+        fetch('/result/member')
+            .then(res => res.json())
+            .then(data => {
+                const $userId = document.getElementById('usrId');
+                for(let index in data){
+                    const $option = document.createElement('option');
+                    $option.value = data[index].userId;
+                    $option.textContent = data[index].nickname;
+                    $userId.appendChild($option);
+                }
+            });
+    </script>
+</body>
+</html>

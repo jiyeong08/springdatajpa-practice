@@ -3,19 +3,19 @@ package com.springdatajpa.practice.testresult.dto;
 public class MemberDTO {
 
     private String userId;
+    private String nickname;
     private char testStatus;
     private char relationCK;
-    private String etcContent;
     private char therapistGenderCK;
 
     public MemberDTO() {
     }
 
-    public MemberDTO(String userId, char testStatus, char relationCK, String etcContent, char therapistGenderCK) {
+    public MemberDTO(String userId, String nickname, char testStatus, char relationCK, char therapistGenderCK) {
         this.userId = userId;
+        this.nickname = nickname;
         this.testStatus = testStatus;
         this.relationCK = relationCK;
-        this.etcContent = etcContent;
         this.therapistGenderCK = therapistGenderCK;
     }
 
@@ -25,6 +25,14 @@ public class MemberDTO {
 
     public void setUserId(String userId) {
         this.userId = userId;
+    }
+
+    public String getNickname() {
+        return nickname;
+    }
+
+    public void setNickname(String nickname) {
+        this.nickname = nickname;
     }
 
     public char getTestStatus() {
@@ -43,14 +51,6 @@ public class MemberDTO {
         this.relationCK = relationCK;
     }
 
-    public String getEtcContent() {
-        return etcContent;
-    }
-
-    public void setEtcContent(String etcContent) {
-        this.etcContent = etcContent;
-    }
-
     public char getTherapistGenderCK() {
         return therapistGenderCK;
     }
@@ -63,9 +63,9 @@ public class MemberDTO {
     public String toString() {
         return "MemberDTO{" +
                 "userId='" + userId + '\'' +
+                ", nickname='" + nickname + '\'' +
                 ", testStatus=" + testStatus +
                 ", relationCK=" + relationCK +
-                ", etcContent='" + etcContent + '\'' +
                 ", therapistGenderCK=" + therapistGenderCK +
                 '}';
     }

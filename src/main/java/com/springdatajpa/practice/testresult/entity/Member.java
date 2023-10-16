@@ -13,25 +13,45 @@ public class Member {
     @Column(name = "user_id")
     private String userId;
 
+    @Column(name = "nickname")
+    private String nickname;
+
     @Column(name = "test_status")
     private char testStatus;
-
-    @Column(name = "relation_ck")
-    private char relationCK;
-
-    @Column(name = "etc_content")
-    private String etcContent;
 
     @Column(name = "therapist_gender_ck")
     private char therapistGenderCK;
 
+    public Member userId(String val){
+        userId = val;
+        return this;
+    }
+
+    public Member nickname(String val){
+        nickname = val;
+        return this;
+    }
+
+    public Member testStatus(char val){
+        this.testStatus = val;
+        return this;
+    }
+
+    public Member therapistGenderCK(char val){
+        this.therapistGenderCK = val;
+        return this;
+    }
+
+    public Member builder(){
+        return new Member(userId, nickname, testStatus, therapistGenderCK);
+    }
+
     protected Member(){}
 
-    public Member(String userId, char testStatus, char relationCK, String etcContent, char therapistGenderCK) {
+    public Member(String userId, String nickname, char testStatus, char therapistGenderCK) {
         this.userId = userId;
+        this.nickname = nickname;
         this.testStatus = testStatus;
-        this.relationCK = relationCK;
-        this.etcContent = etcContent;
         this.therapistGenderCK = therapistGenderCK;
     }
 
@@ -39,16 +59,12 @@ public class Member {
         return userId;
     }
 
+    public String getNickname() {
+        return nickname;
+    }
+
     public char getTestStatus() {
         return testStatus;
-    }
-
-    public char getRelationCK() {
-        return relationCK;
-    }
-
-    public String getEtcContent() {
-        return etcContent;
     }
 
     public char getTherapistGenderCK() {
@@ -59,9 +75,8 @@ public class Member {
     public String toString() {
         return "Member{" +
                 "userId='" + userId + '\'' +
+                ", nickname='" + nickname + '\'' +
                 ", testStatus=" + testStatus +
-                ", relationCK=" + relationCK +
-                ", etcContent='" + etcContent + '\'' +
                 ", therapistGenderCK=" + therapistGenderCK +
                 '}';
     }
