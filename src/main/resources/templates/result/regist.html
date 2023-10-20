@@ -28,11 +28,11 @@
         fetch('/result/member')
             .then(res => res.json())
             .then(data => {
-                const $userId = document.getElementById('usrId');
+                const $userId = document.getElementById('userId');
                 for(let index in data){
                     const $option = document.createElement('option');
                     $option.value = data[index].userId;
-                    $option.textContent = data[index].nickname;
+                    $option.textContent = data[index].userId;
                     $userId.appendChild($option);
                 }
             });

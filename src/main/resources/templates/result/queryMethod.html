@@ -6,6 +6,16 @@
 </head>
 <body>
     <h3> 검사 점수로 회원 조회</h3>
-    <form action="/result/"
+    <form action="/result/search">
+        <label>검사 항목 : </label>
+        <select name="testItem">
+            <option value='우울'>우울</option>
+            <option value='불안'>불안</option>
+            <option value='양극성'>양극성</option>
+            <option value='강박성'>강박성</option>
+        </select><br>
+        <input type="number" name="testScore">
+        <input type="submit" value="조회하기">
+    </form>
 </body>
 </html>

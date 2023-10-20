@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>modify result</title>
+</head>
+<body>
+    <h3>테스트 결과 수정</h3>
+
+    <form action="/result/modify" method="post">
+        <label>수정할 결과 코드 : </label>
+        <input type="number" name="resultCode"><br>
+        <label>우울 점수 : </label>
+        <input type="number" name="depressionTotalScore"><br>
+        <label>불안 점수 : </label>
+        <input type="number" name="anxietyTotalScore"><br>
+        <label>양극성 점수 : </label>
+        <input type="number" name="bipolarTotalScore"><br>
+        <label>강박성 점수 : </label>
+        <input type="number" name="ocdTotalScore"><br>
+        <input type="submit" value="결과 수정">
+    </form>
+</body>
+</html>

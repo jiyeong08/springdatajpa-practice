@@ -2,21 +2,21 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>One Specific Result</title>
+    <title>search result</title>
 </head>
 <body>
-    <table style="text-align: center">
+    <h3>[[${testItem}]] 검사 결과가 [[${testScore}]]점을 초과하는 회원 목록</h3>
+
+    <table>
         <tr>
-            <th>결과코드</th>
-            <th>회원아이디</th>
-            <th>검사일시</th>
-            <th>우울점수총합</th>
-            <th>불안점수총합</th>
-            <th>양극성점수총합</th>
-            <th>강박성점수총합</th>
+            <th>회원 ID</th>
+            <th>검사 일자</th>
+            <th>우울 점수</th>
+            <th>불안 점수</th>
+            <th>양극성 점수</th>
+            <th>강박성 점수</th>
         </tr>
-        <tr>
-            <td th:text="${ result.resultCode }"></td>
+        <tr th:each="result : ${ resultList }">
             <td th:text="${ result.userID }"></td>
             <td th:text="${ result.testDate }"></td>
             <td th:text="${ result.depressionTotalScore }"></td>

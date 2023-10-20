@@ -1,5 +1,7 @@
 package com.springdatajpa.practice.testresult.entity;
 
+import lombok.Builder;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -31,6 +33,45 @@ public class TestResult {
     @Column(name = "user_id")
     private String userId;
 
+    public TestResult resultCode(int val){
+        resultCode = val;
+        return this;
+    }
+
+    public TestResult testDate(String val){
+        testDate = val;
+        return this;
+    }
+
+    public TestResult depressionTotalScore(int val){
+        this.depressionTotalScore = val;
+        return this;
+    }
+
+    public TestResult anxietyTotalScore(int val){
+        this.anxietyTotalScore = val;
+        return this;
+    }
+
+    public TestResult bipolarTotalScore(int val){
+        this.bipolarTotalScore = val;
+        return this;
+    }
+
+    public TestResult ocdTotalScore(int val){
+        this.ocdTotalScore = val;
+        return this;
+    }
+
+    public TestResult userId(String val){
+        userId = val;
+        return this;
+    }
+
+    public TestResult builder(){
+        return new TestResult(resultCode, testDate, depressionTotalScore, anxietyTotalScore, bipolarTotalScore, ocdTotalScore, userId);
+    }
+
     protected TestResult(){}
 
     public TestResult(int resultCode, String testDate, int depressionTotalScore, int anxietyTotalScore, int bipolarTotalScore, int ocdTotalScore, String userId) {
@@ -47,57 +88,36 @@ public class TestResult {
         return resultCode;
     }
 
-    public void setResultCode(int resultCode) {
-        this.resultCode = resultCode;
-    }
 
     public String getTestDate() {
         return testDate;
     }
 
-    public void setTestDate(String testDate) {
-        this.testDate = testDate;
-    }
 
     public int getDepressionTotalScore() {
         return depressionTotalScore;
     }
 
-    public void setDepressionTotalScore(int depressionTotalScore) {
-        this.depressionTotalScore = depressionTotalScore;
-    }
 
     public int getAnxietyTotalScore() {
         return anxietyTotalScore;
     }
 
-    public void setAnxietyTotalScore(int anxietyTotalScore) {
-        this.anxietyTotalScore = anxietyTotalScore;
-    }
 
     public int getBipolarTotalScore() {
         return bipolarTotalScore;
     }
 
-    public void setBipolarTotalScore(int bipolarTotalScore) {
-        this.bipolarTotalScore = bipolarTotalScore;
-    }
 
     public int getOcdTotalScore() {
         return ocdTotalScore;
     }
 
-    public void setOcdTotalScore(int ocdTotalScore) {
-        this.ocdTotalScore = ocdTotalScore;
-    }
 
     public String getUserId() {
         return userId;
     }
 
-    public void setUserId(String userId) {
-        this.userId = userId;
-    }
 
     @Override
     public String toString() {

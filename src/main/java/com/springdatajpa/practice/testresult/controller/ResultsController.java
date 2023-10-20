@@ -31,6 +31,8 @@ public class ResultsController {
 
         TestResultDTO result = resultService.findResultByCode(resultCode);
         model.addAttribute("result", result);
+        System.out.println(result);
+
 
         return "result/oneResult";
 
@@ -51,6 +53,17 @@ public class ResultsController {
     @GetMapping("/queryMethod")
     public void queryMethodPage(){}
 
+    @GetMapping("/search")
+    public String findByScore(@RequestParam String testItem, @RequestParam Integer testScore, Model model){
+
+        List<TestResultDTO> resultList = resultService.findByScore(testItem, testScore);
+        model.addAttribute("resultList", resultList);
+        model.addAttribute("testItem", testItem);
+        model.addAttribute("testScore", testScore);
+
+        return "result/searchResult";
+    }
+
 
     @GetMapping("/regist")
     public void registPage(){}
@@ -70,6 +83,28 @@ public class ResultsController {
 
         return "redirect:/result/allResults";
 
+    }
+
+    @GetMapping("/delete")
+    public void deleteResult(){}
+
+    @PostMapping("/delete")
+    public String deleteResult(@RequestParam Integer resultCode){
+
+        resultService.deleteResult(resultCode);
+
+        return "redirect:/result/allResults";
+    }
+
+    @GetMapping("/modify")
+    public void modifyResult(){}
+
+    @PostMapping("/modify")
+    public String modifyResult(TestResultDTO resultDTO){
+
+        resultService.modifyResult(resultDTO);
+
+        return "redirect:/result/" + resultDTO.getResultCode();
     }
 
 }

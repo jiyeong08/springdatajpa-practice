@@ -5,7 +5,7 @@
     <title>All Results List</title>
 </head>
 <body>
-  <table>
+  <table style="text-align: center">
     <tr>
       <th>결과코드</th>
       <th>회원아이디</th>
@@ -16,13 +16,13 @@
       <th>강박성점수총합</th>
     </tr>
     <tr th:each="result : ${ resultList }">
-      <tb th:text="${ result.resultCode }"></tb>
-      <tb th:text="${ result.userID }"></tb>
-      <tb th:text="${ result.testDate }"></tb>
-      <tb th:text="${ result.depressionTotalScore }"></tb>
-      <tb th:text="${ result.anxietyTotalScore }"></tb>
-      <tb th:text="${ result.bipolarTotalScore }"></tb>
-      <tb th:text="${ result.ocdTotalScore }"></tb>
+      <td th:text="${ result.resultCode }"></td>
+      <td th:text="${ result.userID }"></td>
+      <td th:text="${ result.testDate }"></td>
+      <td th:text="${ result.depressionTotalScore }"></td>
+      <td th:text="${ result.anxietyTotalScore }"></td>
+      <td th:text="${ result.bipolarTotalScore }"></td>
+      <td th:text="${ result.ocdTotalScore }"></td>
     </tr>
   </table>
 

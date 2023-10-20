@@ -14,6 +14,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -65,8 +66,50 @@ public class ResultService {
     public void registNewResult(TestResultDTO newResult1, MemberDTO newResult2) {
 
         resultRepository.save(modelMapper.map(newResult1, TestResult.class));
-        Member foundMember = memberRepository.findById(modifyMember.getUserId()).orElseThrow(IllegalArgumentException::new);
-        foundMember = foundMember.userId(modifyMember.getUserId()).builder();
+        Member foundMember = (Member) memberRepository.findByUserId(newResult2.getUserId()).orElseThrow(IllegalArgumentException::new);
+        foundMember = foundMember.userId(newResult2.getUserId()).builder();
+
+    }
+
+    @Transactional
+    public void deleteResult(Integer resultCode) {
+
+        resultRepository.deleteById(resultCode);
+
+    }
+
+    public void modifyResult(TestResultDTO resultDTO) {
+
+        TestResult foundResult = resultRepository.findById(resultDTO.getResultCode()).orElseThrow(IllegalArgumentException::new);
+        foundResult = foundResult.depressionTotalScore(resultDTO.getDepressionTotalScore())
+                                    .anxietyTotalScore(resultDTO.getAnxietyTotalScore())
+                                    .bipolarTotalScore(resultDTO.getBipolarTotalScore())
+                                    .ocdTotalScore(resultDTO.getOcdTotalScore())
+                                    .builder();
+        resultRepository.save(foundResult);
+
+    }
+
+    public List<TestResultDTO> findByScore(String testItem, Integer testScore) {
+
+        List<TestResult> resultList = new ArrayList<>();
+        if(testItem == "우울") {
+            resultList = resultRepository
+                        .findByDepressionTotalScoreGreaterThan(testScore, Sort.by("testScore").descending());
+        } else if (testItem == "불안") {
+            resultList = resultRepository
+                        .findByAnxietyTotalScoreGreaterThan(testScore, Sort.by("testScore").descending());
+        } else if (testItem == "양극성") {
+            resultList = resultRepository
+                        .findByBipolarTotalScoreGreaterThan(testScore, Sort.by("testScore").descending());
+        } else if (testItem == "강박성") {
+            resultList = resultRepository
+                        .findByOcdTotalScoreGreaterThan(testScore, Sort.by("testScore").descending());
+        }
+
+        return resultList.stream()
+                        .map(result -> modelMapper.map(result, TestResultDTO.class))
+                        .collect(Collectors.toList());
 
     }
 }
