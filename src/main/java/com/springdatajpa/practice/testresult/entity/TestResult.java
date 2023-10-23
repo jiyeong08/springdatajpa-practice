@@ -2,21 +2,20 @@ package com.springdatajpa.practice.testresult.entity;
 
 import lombok.Builder;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.util.Date;
 
 @Entity
 @Table(name = "member_test_result")
 public class TestResult {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "result_code")
     private int resultCode;
 
-    @Column(name = "test_date")
-    private String testDate;
+    @Column(name = "test_date", columnDefinition = "VARCHAR(20)")
+    private Date testDate;
 
     @Column(name = "depression_total_score")
     private int depressionTotalScore;
@@ -34,12 +33,12 @@ public class TestResult {
     private String userId;
 
     public TestResult resultCode(int val){
-        resultCode = val;
+        this.resultCode = val;
         return this;
     }
 
-    public TestResult testDate(String val){
-        testDate = val;
+    public TestResult testDate(Date val){
+        this.testDate = val;
         return this;
     }
 
@@ -64,7 +63,7 @@ public class TestResult {
     }
 
     public TestResult userId(String val){
-        userId = val;
+        this.userId = val;
         return this;
     }
 
@@ -74,7 +73,7 @@ public class TestResult {
 
     protected TestResult(){}
 
-    public TestResult(int resultCode, String testDate, int depressionTotalScore, int anxietyTotalScore, int bipolarTotalScore, int ocdTotalScore, String userId) {
+    public TestResult(int resultCode, Date testDate, int depressionTotalScore, int anxietyTotalScore, int bipolarTotalScore, int ocdTotalScore, String userId) {
         this.resultCode = resultCode;
         this.testDate = testDate;
         this.depressionTotalScore = depressionTotalScore;
@@ -89,7 +88,7 @@ public class TestResult {
     }
 
 
-    public String getTestDate() {
+    public Date getTestDate() {
         return testDate;
     }
 
@@ -123,7 +122,7 @@ public class TestResult {
     public String toString() {
         return "MemberTestResult{" +
                 "resultCode=" + resultCode +
-                ", testDate='" + testDate + '\'' +
+                ", testDate=" + testDate +
                 ", depressionTotalScore=" + depressionTotalScore +
                 ", anxietyTotalScore=" + anxietyTotalScore +
                 ", bipolarTotalScore=" + bipolarTotalScore +

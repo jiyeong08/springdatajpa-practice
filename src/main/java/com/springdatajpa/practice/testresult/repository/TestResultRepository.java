@@ -10,11 +10,11 @@ import java.util.List;
 
 public interface TestResultRepository extends JpaRepository<TestResult, Integer> {
 
-    List<TestResult> findByDepressionTotalScoreGreaterThan(Integer testScore, Sort sort);
+    List<TestResult> findByDepressionTotalScoreGreaterThan(Integer depressionTotalScore, Sort sort);
 
-    List<TestResult> findByAnxietyTotalScoreGreaterThan(Integer testScore, Sort sort);
+    List<TestResult> findByAnxietyTotalScoreGreaterThan(Integer anxietyTotalScore, Sort sort);
 
-    List<TestResult> findByBipolarTotalScoreGreaterThan(Integer testScore, Sort sort);
+    List<TestResult> findByBipolarTotalScoreGreaterThan(Integer bipolarTotalScore, Sort sort);
 
-    List<TestResult> findByOcdTotalScoreGreaterThan(Integer testScore, Sort sort);
+    List<TestResult> findByOcdTotalScoreGreaterThan(Integer ocdTotalScore, Sort sort);
 }

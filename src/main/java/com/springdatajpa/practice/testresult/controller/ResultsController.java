@@ -79,6 +79,9 @@ public class ResultsController {
     @PostMapping("/regist")
     public String registNewResult(TestResultDTO resultDTO, MemberDTO memberDTO){
 
+        System.out.println(resultDTO);
+        System.out.println(memberDTO);
+
         resultService.registNewResult(resultDTO, memberDTO);
 
         return "redirect:/result/allResults";

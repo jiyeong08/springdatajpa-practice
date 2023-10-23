@@ -64,11 +64,11 @@ public class ResultService {
 
     @Transactional
     public void registNewResult(TestResultDTO newResult1, MemberDTO newResult2) {
-
         resultRepository.save(modelMapper.map(newResult1, TestResult.class));
         Member foundMember = (Member) memberRepository.findByUserId(newResult2.getUserId()).orElseThrow(IllegalArgumentException::new);
-        foundMember = foundMember.userId(newResult2.getUserId()).builder();
-
+        foundMember = foundMember.therapistGenderCK(newResult2.getTherapistGenderCK())
+                .testStatus(newResult2.getTestStatus()).builder();
+        memberRepository.save(foundMember);
     }
 
     @Transactional
@@ -93,18 +93,18 @@ public class ResultService {
     public List<TestResultDTO> findByScore(String testItem, Integer testScore) {
 
         List<TestResult> resultList = new ArrayList<>();
-        if(testItem == "우울") {
+        if("우울".equals(testItem)) {
             resultList = resultRepository
-                        .findByDepressionTotalScoreGreaterThan(testScore, Sort.by("testScore").descending());
-        } else if (testItem == "불안") {
+                        .findByDepressionTotalScoreGreaterThan(testScore, Sort.by("depressionTotalScore").descending());
+        } else if ("불안".equals(testItem)) {
             resultList = resultRepository
-                        .findByAnxietyTotalScoreGreaterThan(testScore, Sort.by("testScore").descending());
-        } else if (testItem == "양극성") {
+                        .findByAnxietyTotalScoreGreaterThan(testScore, Sort.by("anxietyTotalScore").descending());
+        } else if ("양극성".equals(testItem)) {
             resultList = resultRepository
-                        .findByBipolarTotalScoreGreaterThan(testScore, Sort.by("testScore").descending());
-        } else if (testItem == "강박성") {
+                        .findByBipolarTotalScoreGreaterThan(testScore, Sort.by("bipolarTotalScore").descending());
+        } else if ("강박성".equals(testItem)) {
             resultList = resultRepository
-                        .findByOcdTotalScoreGreaterThan(testScore, Sort.by("testScore").descending());
+                        .findByOcdTotalScoreGreaterThan(testScore, Sort.by("ocdTotalScore").descending());
         }
 
         return resultList.stream()

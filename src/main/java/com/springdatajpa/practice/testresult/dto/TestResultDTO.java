@@ -71,11 +71,11 @@ public class TestResultDTO {
         this.ocdTotalScore = ocdTotalScore;
     }
 
-    public String getUserID() {
+    public String getUserId() {
         return userId;
     }
 
-    public void setUserID(String userId) {
+    public void setUserId(String userId) {
         this.userId = userId;
     }
 
